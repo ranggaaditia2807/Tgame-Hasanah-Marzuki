@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruang Belajar & Bermain - PKBM Hasanah Marzuki</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/splash.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Google Fonts for modern playful look + Times New Roman fallback for traditional text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- 1. SPLASH SCREEN -->
+    <section id="splash-screen" class="splash-container">
+        <div class="splash-content">
+            <div class="splash-badge">PKBM HASANAH MARZUKI</div>
+            <img src="assets/images/cover.png" alt="Cover Game Edukasi Bahasa Indonesia" class="splash-cover">
+            <h1 class="splash-title">Petualangan Bahasa Indonesia</h1>
+            <p class="splash-subtitle">Modul Edukasi Interaktif Paket B (Setara SMP)</p>
+        </div>
+        <div class="splash-footer-prompt">
+            Sentuh dimana saja untuk mulai
+        </div>
+    </section>
+
+    <!-- MAIN APP CONTAINER -->
+    <div id="app-container" class="app-hidden">
+
+        <!-- 2. IDENTITAS SISWA MODAL -->
+        <div id="modal-identity" class="modal-overlay hidden">
+            <div class="modal-card">
+                <div class="modal-header">
+                    <h2>Selamat Datang! 🎓</h2>
+                    <p>Masukkan identitasmu terlebih dahulu sebelum memulai petualangan belajar dan bermain.</p>
+                </div>
+                <form id="form-identity" class="identity-form">
+                    <div class="form-group">
+                        <label for="input-nama">Nama Lengkap Siswa *</label>
+                        <input type="text" id="input-nama" placeholder="Masukkan nama lengkap..." required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="input-sekolah">Asal Sekolah / PKBM *</label>
+                        <input type="text" id="input-sekolah" value="PKBM Hasanah Marzuki" placeholder="Contoh: PKBM Hasanah Marzuki" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Simpan Identitas & Mulai 🚀</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- NAVIGATION BAR -->
+        <header class="main-navbar">
+            <div class="nav-container">
+                <div class="brand-logo">
+                    <span class="logo-icon">📖</span>
+                    <div class="logo-text">
+                        <span class="brand-title">PKBM Hasanah Marzuki</span>
+                        <span class="brand-sub">Bahasa Indonesia Paket B</span>
+                    </div>
+                </div>
+                <nav class="nav-menu">
+                    <button class="nav-link active" data-target="page-beranda">Beranda</button>
+                    <button class="nav-link" data-target="page-belajar">Belajar</button>
+                    <button class="nav-link" data-target="page-bermain">Bermain</button>
+                    <button class="nav-link" data-target="page-peringkat">Papan Peringkat</button>
+                    <button class="nav-link" data-target="page-pengembang">Pengembang</button>
+                </nav>
+                <div class="user-profile-badge" id="user-badge" title="Klik untuk ubah identitas siswa">
+                    <span class="avatar-circle">👤</span>
+                    <span class="user-name" id="nav-user-name">Siswa</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="content-wrapper">
+            
+            <!-- HALAMAN 1: BERANDA -->
+            <section id="page-beranda" class="page-section active">
+                <!-- Hero Banner -->
+                <div class="hero-banner">
+                    <div class="hero-text">
+                        <h2 id="hero-greeting">Halo, Selamat Datang! 👋</h2>
+                        <p>Mari tingkatkan kemampuan Bahasa Indonesia Paket B secara menyenangkan! Pelajari materi menarik dan dapatkan nilai tertinggi di papan peringkat.</p>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-pill">
+                            <span class="stat-label">Nilai Terbaikmu</span>
+                            <span class="stat-value" id="stat-high-score">0 Pts</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pengumuman -->
+                <div class="announcement-bar">
+                    <span class="announcement-icon">📢</span>
+                    <div class="announcement-content">
+                        <strong>Pengumuman PKBM:</strong> Kuis Modul Teks Laporan Hasil Observasi (LHO), Teks Eksposisi, dan Puisi Rakyat telah aktif!
+                    </div>
+                </div>
+
+                <!-- Pencarian & Kategori -->
+                <div class="section-search">
+                    <div class="search-box">
+                        <input type="text" id="search-game-input" placeholder="Cari materi atau kuis Bahasa Indonesia...">
+                        <button id="btn-search" class="btn btn-primary">🔍 Cari</button>
+                    </div>
+                    <div class="category-pills" id="category-filters">
+                        <button class="category-btn active" data-cat="all">Semua Materi</button>
+                        <button class="category-btn" data-cat="lho">Teks LHO</button>
+                        <button class="category-btn" data-cat="eksposisi">Teks Eksposisi</button>
+                        <button class="category-btn" data-cat="puisi">Puisi Rakyat</button>
+                        <button class="category-btn" data-cat="cerpen">Cerita Pendek</button>
+                        <button class="category-btn" data-cat="tatabahasa">Tata Bahasa</button>
+                    </div>
+                </div>
+
+                <!-- Permainan Unggulan -->
+                <div class="featured-section">
+                    <h3 class="section-title">⭐ Permainan Unggulan</h3>
+                    <div class="featured-card">
+                        <div class="featured-badge">Rekomendasi</div>
+                        <div class="featured-content">
+                            <h4>Detektif Observasi (Teks LHO)</h4>
+                            <p>Uji ketelitianmu dalam menganalisis fakta, struktur definisi umum, dan deskripsi bagian pada Teks Laporan Hasil Observasi.</p>
+                            <button class="btn btn-accent start-quiz-btn" data-quiz-id="quiz-lho">Mainkan Sekarang 🎮</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Koleksi Permainan -->
+                <div class="games-collection-section">
+                    <h3 class="section-title">🎯 Koleksi Permainan & Kuis Interaktif</h3>
+                    <div class="cards-grid" id="games-grid">
+                        <!-- Card 1 -->
+                        <div class="game-card" data-category="lho">
+                            <div class="card-tag tag-lho">Teks LHO</div>
+                            <h3>Master Observasi</h3>
+                            <p>Analisis gagasan utama, kata teknis, dan struktur laporan hasil observasi.</p>
+                            <div class="card-meta">
+                                <span>10 Soal</span>
+                                <span>Tingkat Sedang</span>
+                            </div>
+                            <button class="btn btn-secondary start-quiz-btn" data-quiz-id="quiz-lho">Mulai Kuis</button>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="game-card" data-category="eksposisi">
+                            <div class="card-tag tag-eksposisi">Teks Eksposisi</div>
+                            <h3>Adu Argumen Tepat</h3>
+                            <p>Identifikasi tesis, kalimat fakta-opini, dan penegasan ulang dalam teks eksposisi.</p>
+                            <div class="card-meta">
+                                <span>10 Soal</span>
+                                <span>Tingkat Mudah</span>
+                            </div>
+                            <button class="btn btn-secondary start-quiz-btn" data-quiz-id="quiz-eksposisi">Mulai Kuis</button>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="game-card" data-category="puisi">
+                            <div class="card-tag tag-puisi">Puisi Rakyat</div>
+                            <h3>Pujangga Pantun & Gurindam</h3>
+                            <p>Tebak rima silang, sampiran, isi, dan pesan moral dalam puisi lama Indonesia.</p>
+                            <div class="card-meta">
+                                <span>10 Soal</span>
+                                <span>Tingkat Sulit</span>
+                            </div>
+                            <button class="btn btn-secondary start-quiz-btn" data-quiz-id="quiz-puisi">Mulai Kuis</button>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="game-card" data-category="cerpen">
+                            <div class="card-tag tag-cerpen">Cerita Pendek</div>
+                            <h3>Petualangan Cerpen</h3>
+                            <p>Temukan unsur intrinsik cerpen seperti watak tokoh, latar, alur, dan amanat.</p>
+                            <div class="card-meta">
+                                <span>10 Soal</span>
+                                <span>Tingkat Sedang</span>
+                            </div>
+                            <button class="btn btn-secondary start-quiz-btn" data-quiz-id="quiz-cerpen">Mulai Kuis</button>
+                        </div>
+
+                        <!-- Card 5 -->
+                        <div class="game-card" data-category="tatabahasa">
+                            <div class="card-tag tag-tatabahasa">Tata Bahasa</div>
+                            <h3>Kuis PUEBI & Ejaan</h3>
+                            <p>Latih ketelitian penggunaan kata baku, tanda baca, dan kalimat efektif.</p>
+                            <div class="card-meta">
+                                <span>10 Soal</span>
+                                <span>Tingkat Mudah</span>
+                            </div>
+                            <button class="btn btn-secondary start-quiz-btn" data-quiz-id="quiz-tatabahasa">Mulai Kuis</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HALAMAN 2: BELAJAR -->
+            <section id="page-belajar" class="page-section hidden">
+                <div class="section-header">
+                    <h2>📖 Modul Pembelajaran Bahasa Indonesia Paket B</h2>
+                    <p>Pilih materi di bawah ini untuk membaca rangkuman penjelasan, contoh konkret, dan latihan singkat.</p>
+                </div>
+                <div class="study-layout">
+                    <aside class="study-sidebar">
+                        <ul class="material-menu" id="material-menu-list">
+                            <li class="active" data-material="lho">1. Teks Laporan Hasil Observasi</li>
+                            <li data-material="eksposisi">2. Teks Eksposisi</li>
+                            <li data-material="puisi">3. Puisi Rakyat (Pantun & Gurindam)</li>
+                            <li data-material="cerpen">4. Unsur Intrinsik Cerita Pendek</li>
+                            <li data-material="tatabahasa">5. Tata Bahasa & Kalimat Efektif</li>
+                        </ul>
+                    </aside>
+                    <article class="study-content-body" id="study-material-display">
+                        <!-- Loaded dynamically via JS -->
+                    </article>
+                </div>
+            </section>
+
+            <!-- HALAMAN 3: BERMAIN (KUIS INTERAKTIF) -->
+            <section id="page-bermain" class="page-section hidden">
+                <!-- Quiz Selection Screen -->
+                <div id="quiz-selection-screen">
+                    <div class="section-header">
+                        <h2>🎮 Arena Kuis Edukasi</h2>
+                        <p>Pilih topik kuis yang ingin kamu mainkan untuk menguji pengetahuanmu!</p>
+                    </div>
+                    <div class="quiz-options-grid">
+                        <div class="quiz-option-card">
+                            <div class="diff-badge badge-easy">Tingkat Mudah</div>
+                            <h3>Teks Eksposisi & Argumen</h3>
+                            <p>Uji pemahaman dasar mengenai tesis, argumen, dan fakta-opini.</p>
+                            <button class="btn btn-primary start-quiz-btn" data-quiz-id="quiz-eksposisi">Mainkan Kuis ➔</button>
+                        </div>
+                        <div class="quiz-option-card">
+                            <div class="diff-badge badge-medium">Tingkat Sedang</div>
+                            <h3>Teks Laporan Hasil Observasi (LHO)</h3>
+                            <p>Analisis definisi umum, deskripsi bagian, dan istilah teknis ilmiah.</p>
+                            <button class="btn btn-primary start-quiz-btn" data-quiz-id="quiz-lho">Mainkan Kuis ➔</button>
+                        </div>
+                        <div class="quiz-option-card">
+                            <div class="diff-badge badge-hard">Tingkat Sulit</div>
+                            <h3>Puisi Rakyat & Majas Sastra</h3>
+                            <p>Analisis rima pantun, pesan gurindam, dan majas dalam karya sastra.</p>
+                            <button class="btn btn-primary start-quiz-btn" data-quiz-id="quiz-puisi">Mainkan Kuis ➔</button>
+                        </div>
+                        <div class="quiz-option-card">
+                            <div class="diff-badge badge-medium">Tingkat Sedang</div>
+                            <h3>Unsur Intrinsik Cerpen</h3>
+                            <p>Pahami latar, alur, watak tokoh, dan amanat dalam cerita pendek.</p>
+                            <button class="btn btn-primary start-quiz-btn" data-quiz-id="quiz-cerpen">Mainkan Kuis ➔</button>
+                        </div>
+                        <div class="quiz-option-card">
+                            <div class="diff-badge badge-easy">Tingkat Mudah</div>
+                            <h3>Tata Bahasa & Ejaan Baku</h3>
+                            <p>Latihan tanda baca, kata baku, imbuhan, dan struktur kalimat efektif.</p>
+                            <button class="btn btn-primary start-quiz-btn" data-quiz-id="quiz-tatabahasa">Mainkan Kuis ➔</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Playing Game Container -->
+                <div id="quiz-gameplay-container" class="quiz-box hidden">
+                    <div class="quiz-header">
+                        <button id="btn-exit-quiz" class="btn-text">← Kembali ke Daftar Kuis</button>
+                        <div class="quiz-progress-bar-container">
+                            <div class="quiz-progress-bar" id="quiz-progress-bar"></div>
+                        </div>
+                        <div class="quiz-step-info">Soal <span id="current-q-num">1</span> / <span id="total-q-num">10</span></div>
+                    </div>
+                    
+                    <div class="quiz-body">
+                        <div class="question-box">
+                            <h3 id="question-text">Memuat pertanyaan...</h3>
+                        </div>
+
+                        <div class="options-group" id="options-container">
+                            <!-- Options generated dynamically -->
+                        </div>
+
+                        <!-- Feedback Box -->
+                        <div id="feedback-box" class="feedback-box hidden">
+                            <div class="feedback-status" id="feedback-status"> Benar!</div>
+                            <div class="feedback-explanation" id="feedback-explanation">Penjelasan jawaban akan muncul di sini...</div>
+                            <button id="btn-next-question" class="btn btn-accent">Soal Berikutnya ➔</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz Result Screen -->
+                <div id="quiz-result-container" class="result-box hidden">
+                    <div class="result-header">
+                        <div class="result-icon">🏆</div>
+                        <h2>Kuis Selesai!</h2>
+                        <p id="result-user-name">Luar biasa!</p>
+                    </div>
+                    <div class="result-score-card">
+                        <div class="final-score" id="final-score-val">0</div>
+                        <p class="score-label">Total Nilai Kamu</p>
+                    </div>
+                    <div class="result-summary">
+                        <p id="result-message">Selamat atas pencapaian belajarmu!</p>
+                    </div>
+                    <div class="result-actions">
+                        <button id="btn-restart-quiz" class="btn btn-primary">🔄 Coba Kuis Lagi</button>
+                        <button id="btn-view-leaderboard" class="btn btn-secondary">📊 Lihat Papan Peringkat</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HALAMAN 4: PAPAN PERINGKAT -->
+            <section id="page-peringkat" class="page-section hidden">
+                <div class="section-header">
+                    <h2>🏆 Papan Peringkat (Leaderboard)</h2>
+                    <p>Daftar pencapaian nilai tertinggi siswa PKBM Hasanah Marzuki yang tersimpan secara lokal di browser.</p>
+                </div>
+
+                <!-- Card Pencapaian Pribadi -->
+                <div class="personal-best-card">
+                    <div class="pb-info">
+                        <span>Pencapaian Terbaikmu Saat Ini:</span>
+                        <h3 id="pb-score-display">0 Pts</h3>
+                    </div>
+                    <button id="btn-reset-data" class="btn-text danger-text">Ubah / Reset Data Saya</button>
+                </div>
+
+                <!-- Top 3 Podiums -->
+                <div class="podium-container" id="podium-wrapper">
+                    <!-- Rank 2 -->
+                    <div class="podium-item rank-2" id="podium-2">
+                        <div class="podium-avatar">🥈</div>
+                        <div class="podium-name" id="podium-2-name">-</div>
+                        <div class="podium-score" id="podium-2-score">0 Pts</div>
+                        <div class="podium-base">2</div>
+                    </div>
+                    <!-- Rank 1 -->
+                    <div class="podium-item rank-1" id="podium-1">
+                        <div class="podium-avatar">👑</div>
+                        <div class="podium-name" id="podium-1-name">-</div>
+                        <div class="podium-score" id="podium-1-score">0 Pts</div>
+                        <div class="podium-base">1</div>
+                    </div>
+                    <!-- Rank 3 -->
+                    <div class="podium-item rank-3" id="podium-3">
+                        <div class="podium-avatar">🥉</div>
+                        <div class="podium-name" id="podium-3-name">-</div>
+                        <div class="podium-score" id="podium-3-score">0 Pts</div>
+                        <div class="podium-base">3</div>
+                    </div>
+                </div>
+
+                <!-- Leaderboard Table -->
+                <div class="leaderboard-table-container">
+                    <table class="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>Peringkat</th>
+                                <th>Nama Siswa</th>
+                                <th>Sekolah / PKBM</th>
+                                <th>Nilai Terbaik</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-tbody">
+                            <!-- Loaded dynamically via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- HALAMAN 5: PENGEMBANG -->
+            <section id="page-pengembang" class="page-section hidden">
+                <div class="developer-card">
+                    <div class="dev-avatar-container">
+                        <div class="dev-avatar-frame">
+                            <span class="dev-avatar-emoji">👨‍🏫</span>
+                        </div>
+                    </div>
+                    <div class="dev-info">
+                        <h2>Profil Pengembang</h2>
+                        <h3 class="dev-name">Nama Bapak/Ibu</h3>
+                        <p class="dev-institution">PKBM Hasanah Marzuki</p>
+                        <p class="dev-bio">
+                            Website Game Edukasi Interaktif Mata Pelajaran Bahasa Indonesia Paket B (Setara SMP) ini dikembangkan secara penuh untuk memfasilitasi media pembelajaran mandiri yang interaktif, menyenangkan, dan efektif bagi warga belajar di PKBM Hasanah Marzuki.
+                        </p>
+                        <div class="dev-tags">
+                            <span class="tag">HTML5</span>
+                            <span class="tag">CSS3</span>
+                            <span class="tag">JavaScript Vanilla</span>
+                            <span class="tag">LocalStorage</span>
+                            <span class="tag">GitHub Pages Ready</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="main-footer">
+            <div class="footer-container">
+                <p>&copy; 2026 <strong>PKBM Hasanah Marzuki</strong> — Game Edukasi Bahasa Indonesia Paket B (Setara SMP). Seluruh Hak Cipta Dilindungi.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/storage.js"></script>
+    <script src="js/quiz-data.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
